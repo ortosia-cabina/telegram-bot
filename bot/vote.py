@@ -8,29 +8,34 @@ from configurations import bot_config
 import json
 
 SELECT_VOTING, VOTE = range(2)
-
 USER_VOTE = {}
+USER_VOTINGS = {}
+SELECTED_VOTING = {}
+USER_TOKEN = ""
 
 def vote(bot,update):
      data = {}
      reply_keyboard = []
      reply_options = []
      NEXT_STATE = ConversationHandler.END
-
+     global USER_VOTINGS
+     global USER_VOTE
+     global USER_TOKEN
      try:
           token = get_token(update.message.chat_id)
           data["token"] = token
+          USER_TOKEN = token
           user = requests.post(bot_config.API_ENDPOINT + "authentication/getuser/", data)
           user_id = json.loads(user.text)["id"]
+          USER_VOTE["voter"] = user_id
           r = requests.get(bot_config.API_ENDPOINT + "census/voter/" + str(user_id))
           votings = json.loads(r.text)
+          USER_VOTINGS = votings
 
           for v in votings:
                reply_options.append("Nombre: " + v["name"] + ", Identificador: " + str(v["id"]))
-               print(reply_options)
 
           reply_keyboard.append(reply_options)
-          print(reply_keyboard)
           NEXT_STATE = SELECT_VOTING
 
           update.message.reply_text('Escoge la votación en la que quieres votar.',
@@ -41,13 +46,50 @@ def vote(bot,update):
 
      return NEXT_STATE
 
-def set_vote(bot,update):
-     global VOTING
-     VOTING['desc'] = update.message.text
-     logger.get_logger().info("Description of poll: %s", update.message.text)
-     update.message.reply_text('Ahora tienes que añadir las preguntas de tu encuesta. ¿Cuál es la primera pregunta?')
+def set_voting_id(bot,update):
+     global USER_VOTE
+     global SELECTED_VOTING
+     options = []
+     USER_VOTE["voting"] = int(update.message.text.split("Identificador: ")[1])
 
-     logger.get_logger().info(VOTING)
+     for v in USER_VOTINGS:
+          if v["id"] == USER_VOTE["voting"]:
+               voting = v
+               SELECTED_VOTING = v
+
+
+     for q in v["questions"]:
+          for o in q["options"]:
+               options.append(o["option"])
+
+     reply_keyboard = [options]
+     update.message.reply_text(q["desc"],
+     reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
+
+     return VOTE
+
+def set_vote(bot,update):
+     global SELECTED_VOTING
+     global USER_VOTE
+     global USER_TOKEN
+
+     for q in SELECTED_VOTING["questions"]:
+          for o in q["options"]:
+               answer_id = update.message.text
+               if o["option"] == answer_id:
+                    USER_VOTE["vote"] = {"a":1, "b":1}
+
+     print(USER_VOTE)
+
+     # Send data 
+     headers = {"Authorization": "Token " + USER_TOKEN}
+     r = requests.post(bot_config.API_ENDPOINT + "store/", USER_VOTE, headers = headers)
+     print(r.text)
+     if r.status_code == 201 or r.status_code == 200:
+          update.message.reply_text("Tu voto se ha enviado")
+     else:
+          update.message.reply_text("Hubo un error enviando el voto, inténtalo de nuevo.")
+
      return ConversationHandler.END
 
 def get_token(chat_id):    
