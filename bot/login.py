@@ -5,6 +5,7 @@ import psycopg2
 import requests
 import json
 import datetime
+from configurations import bot_config
 
 STORE = range(1)
 
@@ -27,14 +28,14 @@ def login(bot, update):
     return STORE 
 
 def cancel(bot, update):
-    update.message.reply_text('La creación de la votación se ha cancelado :(')
+    update.message.reply_text('El inicio de sesión se ha cancelado :(')
 
     return ConversationHandler.END
 
 def get_token(credentials):
     headers = {"Content-type": "application/json",
         "Accept": "text/plain"}
-    r = requests.post("https://decide-ortosia.herokuapp.com/authentication/login/", credentials)
+    r = requests.post(bot_config.API_ENDPOINT + "authentication/login/", credentials)
     
     return r
     
@@ -65,10 +66,15 @@ def store_token(bot,update):
     return next_state
 
 def save_token(username, token, chat_id):
-    conn = psycopg2.connect(dbname='d3i8n8a3vv0nst',
-            user='qzxvwbjdcmhnsy',
-            password='39cb3668dfac02f210f27e0d813167519ccf63309560bca7f93d2d79be46f308',
-            host='ec2-54-246-85-234.eu-west-1.compute.amazonaws.com',
+    # conn = psycopg2.connect(dbname='d3i8n8a3vv0nst',
+    #         user='qzxvwbjdcmhnsy',
+    #         password='39cb3668dfac02f210f27e0d813167519ccf63309560bca7f93d2d79be46f308',
+    #         host='ec2-54-246-85-234.eu-west-1.compute.amazonaws.com',
+    #         port=5432
+    #         )
+    conn = psycopg2.connect(dbname='telegram',
+            user='telegram',
+            password='telegram',
             port=5432
             )
      
@@ -76,16 +82,20 @@ def save_token(username, token, chat_id):
     cur.execute("CREATE TABLE IF NOT EXISTS user_token (username text PRIMARY KEY, token text);")
     cur.execute("CREATE TABLE IF NOT EXISTS user_chat (username text REFERENCES user_token(username), chat_id integer, last_connection timestamp);")
 
-    cur.execute("SELECT * FROM user_chat WHERE username = %s AND chat_id = %s", (username, chat_id))
-
-    user = cur.fetchone()[0];
-
-    if not user:
-        cur.execute("INSERT INTO user_token (username, token) VALUES (%s,%s)", (username, token))
-        cur.execute("INSERT INTO user_chat (username, chat_id, last_connection) VALUES (%s,%s,%s)", (username, chat_id, datetime.datetime.now()))
-    
-
+    # Store tables if wasn't created
     conn.commit()
+    user = None
+
+    try:
+        cur.execute("SELECT * FROM user_chat WHERE username = %s AND chat_id = %s", (username, chat_id))
+        user = cur.fetchone()[0];
+    except:
+        cur.execute("INSERT INTO user_token (username, token) VALUES (%s,%s) returning *", (username, token))
+        cur.execute("INSERT INTO user_chat (username, chat_id, last_connection) VALUES (%s,%s,%s)", (username, chat_id, datetime.datetime.now()))
+
+        # Store inserts
+        conn.commit()
+        
     cur.close()
     conn.close()
 

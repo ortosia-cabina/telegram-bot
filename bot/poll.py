@@ -4,6 +4,7 @@ from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove)
 import utils.logger as logger
 import psycopg2
 import requests
+from configurations import bot_config
 
 NAME, DESCRIPTION, QUESTION, ANSWERS, NEXT_QUESTION = range(5)
 
@@ -74,12 +75,12 @@ def set_next_question(bot, update):
      return next_state
 
 def save_poll(token):
-    global VOTING
-    headers = {"Authorization": "Token " + token}
-    r = requests.post("https://decide-ortosia.herokuapp.com/voting/", VOTING, headers=headers)
-    print(VOTING)
-    print(r)
-    return r
+     global VOTING
+     headers = {"Authorization": "Token " + token}
+     r = requests.post(bot_config.API_ENDPOINT + " voting/", VOTING, headers=headers)
+     print(VOTING)
+     print(r)
+     return r
     
 def get_token(chat_id):    
     conn = psycopg2.connect(dbname='d3i8n8a3vv0nst',
