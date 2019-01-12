@@ -9,6 +9,7 @@ psycopg2 = "*"
 inflection = "*"
 requests = "*"
 datetime = "*"
+RandomWords = "*"
 
 [dev-packages]
 pylint = "*"

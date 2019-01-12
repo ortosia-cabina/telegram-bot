@@ -58,7 +58,7 @@ def store_token(bot,update):
         if user:
             update.message.reply_text("¡Ya has iniciado sesión, " + user + "!")
         else:
-            update.message.reply_text("Se han guardado tus credenciales :)")
+            update.message.reply_text("Se han guardado tus credenciales 🌚")
     else:
         update.message.reply_text("Los credenciales son incorrectos, índicalos o escribe /cancel para salir")
         next_state = STORE
@@ -77,6 +77,12 @@ def save_token(username, token, chat_id):
             password='telegram',
             port=5432
             )
+    # conn = psycopg2.connect(dbname='dbumav0q4sq9c5',
+    #         user='yksenfxopzhxik',
+    #         password='239cff05fbc26c3ef804f34bfb8d4833c80dad2ccb82ebd8d4ff4ce7b87de65b',
+    #         host='ec2-54-75-231-3.eu-west-1.compute.amazonaws.com',
+    #         port=5432
+    #         )
      
     cur = conn.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS user_token (username text PRIMARY KEY, token text);")

@@ -21,7 +21,7 @@ def set_name(bot,update):
      VOTING['name'] = update.message.text
 
      logger.get_logger().info("Name of poll: %s", update.message.text)
-     update.message.reply_text('¡De acuerdo! A continuación, indica la descripción.')
+     update.message.reply_text('¡De acuerdo! A continuación, indica la descripción 🌈')
 
      return DESCRIPTION
 
@@ -68,7 +68,7 @@ def set_next_question(bot, update):
           response = save_poll(token)
           
           if response.status_code == 201:
-               update.message.reply_text('¡Nos vemos!')
+               update.message.reply_text('¡Nos vemos! 🐼')
           else:
                update.message.reply_text('Error al crear la votación, inténtalo de nuevo')
               
@@ -77,28 +77,33 @@ def set_next_question(bot, update):
 def save_poll(token):
      global VOTING
      headers = {"Authorization": "Token " + token}
-     r = requests.post(bot_config.API_ENDPOINT + " voting/", VOTING, headers=headers)
+     print(token)
+     r = requests.post(bot_config.API_ENDPOINT + "voting/", json=VOTING, headers=headers)
      print(VOTING)
      print(r)
      return r
     
 def get_token(chat_id):    
-    conn = psycopg2.connect(dbname='d3i8n8a3vv0nst',
-            user='qzxvwbjdcmhnsy',
-            password='39cb3668dfac02f210f27e0d813167519ccf63309560bca7f93d2d79be46f308',
-            host='ec2-54-246-85-234.eu-west-1.compute.amazonaws.com',
-            port=5432
-            )
-     
-    cur = conn.cursor()
-    cur.execute("SELECT token from user_token where username = (SELECT username FROM user_chat WHERE last_connection = (SELECT MAX(last_connection) FROM user_chat) AND chat_id =" + str(chat_id) + ");")
-    
-    token = cur.fetchone()[0]
-    
-    cur.close()
-    conn.close()
-    
-    return token
+#     conn = psycopg2.connect(dbname='d3i8n8a3vv0nst',
+#             user='qzxvwbjdcmhnsy',
+#             password='39cb3668dfac02f210f27e0d813167519ccf63309560bca7f93d2d79be46f308',
+#             host='ec2-54-246-85-234.eu-west-1.compute.amazonaws.com',
+#             port=5432
+#             )
+     conn = psycopg2.connect(dbname='telegram',
+               user='telegram',
+               password='telegram',
+               port=5432
+     )
+     cur = conn.cursor()
+     cur.execute("SELECT token from user_token where username = (SELECT username FROM user_chat WHERE last_connection = (SELECT MAX(last_connection) FROM user_chat) AND chat_id =" + str(chat_id) + ");")
+
+     token = cur.fetchone()[0]
+
+     cur.close()
+     conn.close()
+
+     return token
     
 def cancel(bot, update):
      update.message.reply_text('La creación de la votación se ha cancelado :(')

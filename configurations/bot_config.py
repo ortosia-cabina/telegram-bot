@@ -6,4 +6,4 @@ IP = '0.0.0.0'
 PORT = 80
 URL_PATH = TOKEN # This is recommended for avoiding random people making fake updates to your bot
 WEBHOOK_URL = 'https://example.com/%s' % (URL_PATH,)
-API_ENDPOINT = 'http://cabina-ortosia.herokuapp.com/'
+API_ENDPOINT = 'http://decide-ortosia.herokuapp.com/'
