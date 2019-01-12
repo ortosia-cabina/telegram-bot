@@ -5,8 +5,11 @@ import utils.logger as logger
 import psycopg2
 import requests
 from configurations import bot_config
+# import sys
 import json
-# from random_words import RandomWords
+import js2py
+# sys.path.append('../assets/crypto')
+# import elgamal
 
 SELECT_VOTING, VOTE = range(2)
 USER_VOTE = {}
@@ -67,7 +70,6 @@ def set_voting_id(bot,update):
                SELECTED_VOTING = v
 
      print(v)
-
      if len(v["questions"]) == 0:
           NEXT_STATE = ConversationHandler.END
           update.message.reply_text("No hay preguntas para esta votación aún.")
@@ -87,12 +89,24 @@ def set_vote(bot,update):
      global USER_VOTE
      global USER_TOKEN
      global USER_VOTINGS
+     
+     js2py.translate_file('bot\crypto\elgamal.js', 'elgamal.py')
+     js2py.translate_file('bot\crypto\sjcl.js', 'sjcl.py')
+     # js2py.translate_file('bot\crypto\\bigint.js', 'bigint.py')
+     from elgamal import elgamal
+     # from sjcl import sjcl
+     sjcl =  js2py.require("sjcl");
+     # from bigint import bigint
+     print(sjcl.random.randomWords(2, 0))
 
      for q in SELECTED_VOTING["questions"]:
           for o in q["options"]:
                answer_id = update.message.text
                if o["option"] == answer_id:
-                    # cipher = encrypt(o["number"])
+                    # bigmsg = BigInt.fromJSONObject(o["option"]);
+                    # print(bigmsg)
+                    # cipher = elgamal.ElGamal.encrypt(SELECTED_VOTING["pub_key"], 2)
+                    # print(cipher)
                     USER_VOTE["vote"] = {"a":"3", "b":"2"}
 
      print(USER_VOTE)

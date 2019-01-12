@@ -9,8 +9,16 @@ from configurations import bot_config
 NAME, DESCRIPTION, QUESTION, ANSWERS, NEXT_QUESTION = range(5)
 
 VOTING = {}
+MULTIPLE_QUESTION = False
+CURRENT_QUESTION = ""
 
 def poll(bot,update):
+     global VOTING
+     global MULTIPLE_QUESTION
+     global CURRENT_QUESTION
+     VOTING = {}
+     MULTIPLE_QUESTION = False
+     CURRENT_QUESTION = ""
      logger.get_logger().info("Name of poll: %s", update.message.text)
      update.message.reply_text('Vas a crear una nueva votación. En primer lugar, indica el nombre de la misma :)')
 
@@ -36,7 +44,13 @@ def set_description(bot,update):
 
 def set_question(bot,update):
      global VOTING
-     VOTING['question'] = update.message.text
+     global CURRENT_QUESTION
+
+     if MULTIPLE_QUESTION == False:
+          VOTING['question'] = update.message.text
+     else:
+          CURRENT_QUESTION = update.message.text
+          VOTING["questions"].append({"desc": update.message.text, "options": []})
      update.message.reply_text('A continuación, indica las respuestas separadas por saltos de línea. Por ejemplo:\nRespuesta 1 \nRespuesta 2')
 
      logger.get_logger().info(VOTING)
@@ -44,13 +58,22 @@ def set_question(bot,update):
 
 def set_answers(bot,update):
      global VOTING
+     global CURRENT_QUESTION
      reply_keyboard = [['Sí', 'No']]
      options = []
      for i in update.message.text.split("\n"):
           options.append(i)
 
-     VOTING['question_opt'] = options
-     logger.get_logger().info(VOTING['question_opt'])
+     if MULTIPLE_QUESTION == False:     
+          VOTING['question_opt'] = options
+     else:
+          for i in VOTING["questions"]:
+               if i["desc"] == CURRENT_QUESTION:
+                    for o in options:
+                         i["options"].append({"option": o})
+                    break;
+     
+     print(VOTING)
      update.message.reply_text('La pregunta se ha guardado. ¿Quieres crear otra?',
      reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
 
@@ -58,10 +81,23 @@ def set_answers(bot,update):
 
 def set_next_question(bot, update):
      global VOTING
+     global MULTIPLE_QUESTION
      next_state = ConversationHandler.END
 
      if(update.message.text == 'Sí'):
           next_state = QUESTION
+
+          if MULTIPLE_QUESTION == False:
+               MULTIPLE_QUESTION = True
+               VOTING["multiple"] = True
+               VOTING["questions"] = []
+               options = []
+
+               for option in VOTING['question_opt']:
+                    options.append({"option": option})
+               VOTING["questions"].append({"desc":VOTING['question'], "options": options})
+               del VOTING["question"]
+               del VOTING["question_opt"]
           update.message.reply_text('¡De acuerdo! ¿Cuál es la nueva pregunta?')
      else:
           token = get_token(update.message.chat_id)

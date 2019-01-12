@@ -17,11 +17,12 @@ def load_commands(dispatcher):
     files = os.listdir(base_path)
 
     for file_name in files:
-        command, _ = os.path.splitext(file_name)
+        if file_name != 'crypto':
+            command, _ = os.path.splitext(file_name)
 
-        module = import_module('.%s' % (command,), 'bot')
+            module = import_module('.%s' % (command,), 'bot')
 
-        module.main(dispatcher)
+            module.main(dispatcher)
         
 
 def graceful_exit(signum, frame):
