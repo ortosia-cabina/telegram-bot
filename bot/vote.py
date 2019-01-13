@@ -48,8 +48,8 @@ def vote(bot,update):
           if len(USER_VOTINGS) > 0:
                for v in USER_VOTINGS:
                     reply_options.append("Nombre: " + v["name"] + ", Identificador: " + str(v["id"]))
-                    reply_keyboard.append(reply_options)
-                    NEXT_STATE = SELECT_VOTING
+                reply_keyboard.append(reply_options)
+                NEXT_STATE = SELECT_VOTING
 
                update.message.reply_text('Escoge la votación en la que quieres votar 🦄',
                reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
