@@ -66,23 +66,12 @@ def store_token(bot,update):
     return next_state
 
 def save_token(username, token, chat_id):
-    # conn = psycopg2.connect(dbname='d3i8n8a3vv0nst',
-    #         user='qzxvwbjdcmhnsy',
-    #         password='39cb3668dfac02f210f27e0d813167519ccf63309560bca7f93d2d79be46f308',
-    #         host='ec2-54-246-85-234.eu-west-1.compute.amazonaws.com',
-    #         port=5432
-    #         )
-    conn = psycopg2.connect(dbname='telegram',
-            user='telegram',
-            password='telegram',
+    conn = psycopg2.connect(dbname='dbug2e1mgmcjr9',
+            user='tplmohpmvjmlaz',
+            password='f9beee7b53c2358efa9e31cb5f02ebd052915955b106f56ab28b4401ef9891af',
+            host='ec2-54-75-230-41.eu-west-1.compute.amazonaws.com',
             port=5432
             )
-    # conn = psycopg2.connect(dbname='dbumav0q4sq9c5',
-    #         user='yksenfxopzhxik',
-    #         password='239cff05fbc26c3ef804f34bfb8d4833c80dad2ccb82ebd8d4ff4ce7b87de65b',
-    #         host='ec2-54-75-231-3.eu-west-1.compute.amazonaws.com',
-    #         port=5432
-    #         )
      
     cur = conn.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS user_token (username text PRIMARY KEY, token text);")
