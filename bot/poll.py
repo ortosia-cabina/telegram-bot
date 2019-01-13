@@ -120,17 +120,12 @@ def save_poll(token):
      return r
     
 def get_token(chat_id):    
-#     conn = psycopg2.connect(dbname='d3i8n8a3vv0nst',
-#             user='qzxvwbjdcmhnsy',
-#             password='39cb3668dfac02f210f27e0d813167519ccf63309560bca7f93d2d79be46f308',
-#             host='ec2-54-246-85-234.eu-west-1.compute.amazonaws.com',
-#             port=5432
-#             )
-     conn = psycopg2.connect(dbname='telegram',
-               user='telegram',
-               password='telegram',
-               port=5432
-     )
+    conn = psycopg2.connect(dbname='dbug2e1mgmcjr9',
+            user='tplmohpmvjmlaz',
+            password='f9beee7b53c2358efa9e31cb5f02ebd052915955b106f56ab28b4401ef9891af',
+            host='ec2-54-75-230-41.eu-west-1.compute.amazonaws.com',
+            port=5432
+            )
      cur = conn.cursor()
      cur.execute("SELECT token from user_token where username = (SELECT username FROM user_chat WHERE last_connection = (SELECT MAX(last_connection) FROM user_chat) AND chat_id =" + str(chat_id) + ");")
 

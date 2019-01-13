@@ -15,7 +15,7 @@ var.get('ElGamal').put('BITS', Js(256.0))
 @Js
 def PyJs_anonymous_1_(max, this, arguments, var=var):
     var = Scope({'max':max, 'this':this, 'arguments':arguments}, var)
-    var.registers(['max', 'random', 'rand_bi'])
+    var.registers(['random', 'rand_bi', 'max'])
     pass
     var.put('random', var.get('sjcl').get('random').callprop('randomWords', Js(100.0), Js(0.0)))
     var.put('rand_bi', var.get('BigInt').create(var.get('sjcl').get('codec').get('hex').callprop('fromBits', var.get('random')), Js(16.0)))
@@ -26,7 +26,7 @@ var.get('ElGamal').put('getRandomInteger', PyJs_anonymous_1_)
 @Js
 def PyJs_anonymous_2_(pk, m, r, this, arguments, var=var):
     var = Scope({'pk':pk, 'm':m, 'r':r, 'this':this, 'arguments':arguments}, var)
-    var.registers(['q1', 'beta', 'pk', 'alpha', 'r', 'q', 'm'])
+    var.registers(['beta', 'q', 'q1', 'pk', 'r', 'alpha', 'm'])
     if var.get('m').callprop('equals', var.get('BigInt').get('ZERO')):
         PyJsTempException = JsToPyException(Js("Can't encrypt 0 with El Gamal"))
         raise PyJsTempException

@@ -8,11 +8,11 @@ var = Scope( JS_BUILTINS )
 set_global_object(var)
 
 # Code follows:
-var.registers(['z', 'D', 'E', 'C', 'y', 'H', 'u', 'A', 'F', 'B', 'G', 't', 'sjcl'])
+var.registers(['sjcl', 'u', 'F', 'E', 'A', 'y', 'B', 't', 'H', 'G', 'C', 'D', 'z'])
 @Js
 def PyJsHoisted_t_(a, b, c, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'this':this, 'arguments':arguments}, var)
-    var.registers(['p', 'w', 'e', 'q', 'h', 'k', 'l', 'f', 'g', 'x', 'v', 'b', 'c', 'a', 'r', 'n', 'm', 'd'])
+    var.registers(['k', 'n', 'a', 'w', 'h', 'q', 'd', 'f', 'x', 'r', 'c', 'l', 'e', 'g', 'v', 'p', 'm', 'b'])
     if PyJsStrictNeq(Js(4.0),var.get('b').get('length')):
         PyJsTempException = JsToPyException(var.get('sjcl').get('exception').get('invalid').create(Js('invalid aes block size')))
         raise PyJsTempException
@@ -54,7 +54,7 @@ var.put('t', PyJsHoisted_t_)
 @Js
 def PyJsHoisted_u_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['p', 'e', 'q', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'r', 'n', 'm', 'd'])
+    var.registers(['k', 'n', 'a', 'h', 'q', 'd', 'f', 'c', 'r', 'l', 'e', 'g', 'p', 'm', 'b'])
     var.put('f', var.get('a').get('F'))
     var.put('g', var.get('a').get('b'))
     var.put('h', var.get('f').get('0'))
@@ -89,7 +89,7 @@ var.put('u', PyJsHoisted_u_)
 @Js
 def PyJsHoisted_A_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'c', 'e', 'b'])
     var.put('d', var.get('sjcl').get('random').get('K').get(var.get('a')))
     var.put('e', Js([]))
     for PyJsTemp in var.get('d'):
@@ -213,7 +213,7 @@ var.put('sjcl', PyJs_Object_0_)
 @Js
 def PyJs_anonymous_16_(a, this, arguments, var=var):
     var = Scope({'a':a, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'h', 'd', 'f', 'c', 'e', 'g', 'b'])
     (var.get(u"this").get('s').get('0').get('0').get('0') or var.get(u"this").callprop('O'))
     var.put('f', var.get(u"this").get('s').get('0').get('4'))
     var.put('g', var.get(u"this").get('s').get('1'))
@@ -261,7 +261,7 @@ PyJs_anonymous_21_._set_name('anonymous')
 @Js
 def PyJs_anonymous_22_(this, arguments, var=var):
     var = Scope({'this':this, 'arguments':arguments}, var)
-    var.registers(['p', 'e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'n', 'm', 'd'])
+    var.registers(['k', 'a', 'n', 'h', 'd', 'f', 'c', 'l', 'e', 'g', 'p', 'm', 'b'])
     var.put('a', var.get(u"this").get('s').get('0'))
     var.put('b', var.get(u"this").get('s').get('1'))
     var.put('c', var.get('a').get('4'))
@@ -311,14 +311,14 @@ PyJs_anonymous_27_._set_name('anonymous')
 @Js
 def PyJs_anonymous_28_(a, b, c, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     var.put('d', var.get('Math').callprop('floor', (((-var.get('b'))-var.get('c'))&Js(31.0))))
     return ((((var.get('a').get(((var.get('b')/Js(32.0))|Js(0.0)))<<(Js(32.0)-var.get('d')))^PyJsBshift(var.get('a').get((((var.get('b')/Js(32.0))+Js(1.0))|Js(0.0))),var.get('d'))) if ((((var.get('b')+var.get('c'))-Js(1.0))^var.get('b'))&(-Js(32.0))) else PyJsBshift(var.get('a').get(((var.get('b')/Js(32.0))|Js(0.0))),var.get('d')))&((Js(1.0)<<var.get('c'))-Js(1.0)))
 PyJs_anonymous_28_._set_name('anonymous')
 @Js
 def PyJs_anonymous_29_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     if (PyJsStrictEq(Js(0.0),var.get('a').get('length')) or PyJsStrictEq(Js(0.0),var.get('b').get('length'))):
         return var.get('a').callprop('concat', var.get('b'))
     var.put('c', var.get('a').get((var.get('a').get('length')-Js(1.0))))
@@ -359,7 +359,7 @@ PyJs_anonymous_33_._set_name('anonymous')
 @Js
 def PyJs_anonymous_34_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     if PyJsStrictNeq(var.get('sjcl').get('bitArray').callprop('bitLength', var.get('a')),var.get('sjcl').get('bitArray').callprop('bitLength', var.get('b'))):
         return Js(1.0).neg()
     var.put('c', Js(0.0))
@@ -375,7 +375,7 @@ PyJs_anonymous_34_._set_name('anonymous')
 @Js
 def PyJs_anonymous_35_(a, b, c, d, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'c', 'e', 'b'])
     pass
     var.put('e', Js(0.0))
     #for JS loop
@@ -424,7 +424,7 @@ var.get('sjcl').put('bitArray', PyJs_Object_26_)
 @Js
 def PyJs_anonymous_39_(a, this, arguments, var=var):
     var = Scope({'a':a, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'c', 'e', 'b'])
     var.put('b', Js(''))
     var.put('c', var.get('sjcl').get('bitArray').callprop('bitLength', var.get('a')))
     #for JS loop
@@ -439,7 +439,7 @@ PyJs_anonymous_39_._set_name('anonymous')
 @Js
 def PyJs_anonymous_40_(a, this, arguments, var=var):
     var = Scope({'a':a, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     var.put('a', var.get('unescape')(var.get('encodeURIComponent')(var.get('a'))))
     var.put('b', Js([]))
     var.put('d', Js(0.0))
@@ -472,7 +472,7 @@ PyJs_anonymous_42_._set_name('anonymous')
 @Js
 def PyJs_anonymous_43_(a, this, arguments, var=var):
     var = Scope({'a':a, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     var.put('c', Js([]))
     var.put('a', var.get('a').callprop('replace', JsRegExp('/\\s|0x/g'), Js('')))
     var.put('d', var.get('a').get('length'))
@@ -491,7 +491,7 @@ var.get('sjcl').get('codec').put('hex', PyJs_Object_41_)
 @Js
 def PyJs_anonymous_45_(a, b, c, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['k', 'a', 'h', 'd', 'f', 'c', 'l', 'e', 'g', 'b'])
     var.put('d', var.get('sjcl').get('codec').get('base32').get('BASE'))
     var.put('e', var.get('sjcl').get('codec').get('base32').get('REMAINING'))
     var.put('f', Js(''))
@@ -517,7 +517,7 @@ PyJs_anonymous_45_._set_name('anonymous')
 @Js
 def PyJs_anonymous_47_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'n', 'm', 'd'])
+    var.registers(['k', 'n', 'a', 'h', 'd', 'f', 'c', 'l', 'e', 'g', 'm', 'b'])
     var.put('a', var.get('a').callprop('replace', JsRegExp('/\\s|=/g'), Js('')).callprop('toUpperCase'))
     var.put('c', var.get('sjcl').get('codec').get('base32').get('BITS'))
     var.put('d', var.get('sjcl').get('codec').get('base32').get('BASE'))
@@ -538,16 +538,16 @@ def PyJs_anonymous_47_(a, b, this, arguments, var=var):
                     try:
                         return var.get('sjcl').get('codec').get('base32hex').callprop('toBits', var.get('a'))
                     except PyJsException as PyJsTempException:
-                        PyJsHolder_70_74370291 = var.own.get('p')
+                        PyJsHolder_70_18436769 = var.own.get('p')
                         var.force_own_put('p', PyExceptionToJs(PyJsTempException))
                         try:
                             pass
                         finally:
-                            if PyJsHolder_70_74370291 is not None:
-                                var.own['p'] = PyJsHolder_70_74370291
+                            if PyJsHolder_70_18436769 is not None:
+                                var.own['p'] = PyJsHolder_70_18436769
                             else:
                                 del var.own['p']
-                            del PyJsHolder_70_74370291
+                            del PyJsHolder_70_18436769
                 PyJsTempException = JsToPyException(var.get('sjcl').get('exception').get('invalid').create(((Js("this isn't ")+var.get('m'))+Js('!'))))
                 raise PyJsTempException
             (PyJsComma(PyJsComma(var.put('h', var.get('e'), '-'),var.get('f').callprop('push', (var.get('l')^PyJsBshift(var.get('n'),var.get('h'))))),var.put('l', (var.get('n')<<(var.get('c')-var.get('h'))))) if (var.get('h')>var.get('e')) else PyJsComma(var.put('h', var.get('d'), '+'),var.put('l', (var.get('n')<<(var.get('c')-var.get('h'))), '^')))
@@ -575,7 +575,7 @@ var.get('sjcl').get('codec').put('base32hex', PyJs_Object_48_)
 @Js
 def PyJs_anonymous_52_(a, b, c, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'h', 'd', 'f', 'c', 'e', 'g', 'b'])
     var.put('d', Js(''))
     var.put('e', Js(0.0))
     var.put('f', var.get('sjcl').get('codec').get('base64').get('B'))
@@ -599,7 +599,7 @@ PyJs_anonymous_52_._set_name('anonymous')
 @Js
 def PyJs_anonymous_54_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'h', 'd', 'f', 'c', 'e', 'g', 'b'])
     var.put('a', var.get('a').callprop('replace', JsRegExp('/\\s|=/g'), Js('')))
     var.put('c', Js([]))
     var.put('e', Js(0.0))
@@ -663,7 +663,7 @@ PyJs_anonymous_61_._set_name('anonymous')
 @Js
 def PyJs_anonymous_62_(a, this, arguments, var=var):
     var = Scope({'a':a, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'c', 'e', 'b'])
     (PyJsStrictEq(Js('string'),var.get('a',throw=False).typeof()) and var.put('a', var.get('sjcl').get('codec').get('utf8String').callprop('toBits', var.get('a'))))
     var.put('c', var.get(u"this").put('A', var.get('sjcl').get('bitArray').callprop('concat', var.get(u"this").get('A'), var.get('a'))))
     var.put('b', var.get(u"this").get('l'))
@@ -718,7 +718,7 @@ PyJs_anonymous_63_._set_name('anonymous')
 @Js
 def PyJs_anonymous_64_(this, arguments, var=var):
     var = Scope({'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'c', 'e', 'b'])
     @Js
     def PyJsHoisted_a_(a, this, arguments, var=var):
         var = Scope({'a':a, 'this':this, 'arguments':arguments}, var)
@@ -778,7 +778,7 @@ PyJs_anonymous_70_._set_name('anonymous')
 @Js
 def PyJs_anonymous_71_(a, b, c, d, e, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['k', 'a', 'h', 'd', 'f', 'c', 'l', 'e', 'g', 'b'])
     var.put('g', var.get('b').callprop('slice', Js(0.0)))
     var.put('h', var.get('sjcl').get('bitArray'))
     var.put('k', (var.get('h').callprop('bitLength', var.get('c'))/Js(8.0)))
@@ -804,7 +804,7 @@ PyJs_anonymous_71_._set_name('anonymous')
 @Js
 def PyJs_anonymous_72_(a, b, c, d, e, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['k', 'a', 'h', 'd', 'f', 'c', 'l', 'e', 'g', 'b'])
     var.put('e', (var.get('e') or Js(64.0)))
     var.put('d', (var.get('d') or Js([])))
     var.put('f', var.get('sjcl').get('bitArray'))
@@ -835,7 +835,7 @@ PyJs_anonymous_72_._set_name('anonymous')
 @Js
 def PyJs_anonymous_73_(a, b, c, d, e, f, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'f':f, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'k', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['k', 'a', 'h', 'd', 'f', 'c', 'e', 'g', 'b'])
     var.put('g', Js([]))
     var.put('h', var.get('sjcl').get('bitArray'))
     var.put('k', var.get('h').get('i'))
@@ -858,7 +858,7 @@ PyJs_anonymous_73_._set_name('anonymous')
 @Js
 def PyJs_anonymous_75_(a, b, c, d, e, f, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'f':f, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'h', 'd', 'f', 'c', 'e', 'g', 'b'])
     var.put('g', var.get('sjcl').get('bitArray'))
     var.put('h', var.get('g').get('i'))
     var.put('e', Js(8.0), '/')
@@ -881,7 +881,7 @@ PyJs_anonymous_75_._set_name('anonymous')
 @Js
 def PyJs_anonymous_76_(a, b, c, d, e, f, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'f':f, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'n', 'm', 'd'])
+    var.registers(['k', 'n', 'a', 'h', 'd', 'f', 'c', 'l', 'e', 'g', 'm', 'b'])
     var.put('h', var.get('sjcl').get('bitArray'))
     var.put('g', var.get('h').get('i'))
     var.put('k', var.get('b').get('length'))
@@ -910,7 +910,7 @@ var.get('sjcl').get('mode').put('ccm', PyJs_Object_67_)
 @Js
 def PyJs_anonymous_81_(a, b, c, d, e, f, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'f':f, 'this':this, 'arguments':arguments}, var)
-    var.registers(['p', 'e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'n', 'm', 'd'])
+    var.registers(['k', 'n', 'a', 'h', 'd', 'f', 'c', 'l', 'e', 'g', 'p', 'm', 'b'])
     if PyJsStrictNeq(Js(128.0),var.get('sjcl').get('bitArray').callprop('bitLength', var.get('c'))):
         PyJsTempException = JsToPyException(var.get('sjcl').get('exception').get('invalid').create(Js('ocb iv must be 128 bits')))
         raise PyJsTempException
@@ -941,7 +941,7 @@ PyJs_anonymous_81_._set_name('anonymous')
 @Js
 def PyJs_anonymous_82_(a, b, c, d, e, f, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'f':f, 'this':this, 'arguments':arguments}, var)
-    var.registers(['p', 'q', 'e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'r', 'n', 'm', 'd'])
+    var.registers(['k', 'n', 'a', 'h', 'q', 'd', 'f', 'r', 'c', 'l', 'e', 'g', 'p', 'm', 'b'])
     if PyJsStrictNeq(Js(128.0),var.get('sjcl').get('bitArray').callprop('bitLength', var.get('c'))):
         PyJsTempException = JsToPyException(var.get('sjcl').get('exception').get('invalid').create(Js('ocb iv must be 128 bits')))
         raise PyJsTempException
@@ -975,7 +975,7 @@ PyJs_anonymous_82_._set_name('anonymous')
 @Js
 def PyJs_anonymous_83_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'h', 'd', 'f', 'c', 'e', 'g', 'b'])
     var.put('d', var.get('sjcl').get('mode').get('ocb2').get('S'))
     var.put('e', var.get('sjcl').get('bitArray'))
     var.put('f', var.get('e').get('i'))
@@ -1005,7 +1005,7 @@ var.get('sjcl').get('mode').put('ocb2', PyJs_Object_80_)
 @Js
 def PyJs_anonymous_86_(a, b, c, d, e, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'f', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'f', 'c', 'e', 'b'])
     var.put('f', var.get('b').callprop('slice', Js(0.0)))
     var.put('b', var.get('sjcl').get('bitArray'))
     var.put('d', (var.get('d') or Js([])))
@@ -1015,7 +1015,7 @@ PyJs_anonymous_86_._set_name('anonymous')
 @Js
 def PyJs_anonymous_87_(a, b, c, d, e, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'h', 'd', 'f', 'c', 'e', 'g', 'b'])
     var.put('f', var.get('b').callprop('slice', Js(0.0)))
     var.put('g', var.get('sjcl').get('bitArray'))
     var.put('h', var.get('g').callprop('bitLength', var.get('f')))
@@ -1031,7 +1031,7 @@ PyJs_anonymous_87_._set_name('anonymous')
 @Js
 def PyJs_anonymous_88_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'h', 'd', 'f', 'c', 'e', 'g', 'b'])
     var.put('h', var.get('sjcl').get('bitArray').get('i'))
     var.put('e', Js([Js(0.0), Js(0.0), Js(0.0), Js(0.0)]))
     var.put('f', var.get('b').callprop('slice', Js(0.0)))
@@ -1057,7 +1057,7 @@ PyJs_anonymous_88_._set_name('anonymous')
 @Js
 def PyJs_anonymous_89_(a, b, c, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'c', 'e', 'b'])
     var.put('e', var.get('c').get('length'))
     var.put('b', var.get('b').callprop('slice', Js(0.0)))
     #for JS loop
@@ -1074,7 +1074,7 @@ PyJs_anonymous_89_._set_name('anonymous')
 @Js
 def PyJs_anonymous_91_(a, b, c, d, e, f, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'f':f, 'this':this, 'arguments':arguments}, var)
-    var.registers(['p', 'q', 'e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'r', 'n', 'm', 'd'])
+    var.registers(['k', 'n', 'a', 'h', 'q', 'd', 'f', 'r', 'c', 'l', 'e', 'g', 'p', 'm', 'b'])
     var.put('q', var.get('sjcl').get('bitArray'))
     var.put('m', var.get('c').get('length'))
     var.put('p', var.get('q').callprop('bitLength', var.get('c')))
@@ -1114,7 +1114,7 @@ var.get('sjcl').get('mode').put('gcm', PyJs_Object_85_)
 @Js
 def PyJs_anonymous_95_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'c', 'e', 'b'])
     var.get(u"this").put('W', var.put('b', (var.get('b') or var.get('sjcl').get('hash').get('sha256'))))
     var.put('c', Js([Js([]), Js([])]))
     var.put('e', (var.get('b').get('prototype').get('blockSize')/Js(32.0)))
@@ -1172,7 +1172,7 @@ var.get('sjcl').get('misc').get('hmac').get('prototype').put('digest', PyJs_anon
 @Js
 def PyJs_anonymous_100_(a, b, c, d, e, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'e':e, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'k', 'l', 'f', 'g', 'b', 'c', 'a', 'n', 'd'])
+    var.registers(['k', 'n', 'a', 'h', 'd', 'f', 'c', 'l', 'e', 'g', 'b'])
     var.put('c', (var.get('c') or Js(10000.0)))
     if ((Js(0.0)>var.get('d')) or (Js(0.0)>var.get('c'))):
         PyJsTempException = JsToPyException(var.get('sjcl').get('exception').get('invalid').create(Js('invalid params to pbkdf2')))
@@ -1242,7 +1242,7 @@ var.get('sjcl').put('prng', PyJs_anonymous_101_)
 @Js
 def PyJs_anonymous_108_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'f', 'c', 'e', 'g', 'b'])
     var.put('c', Js([]))
     var.put('d', var.get(u"this").callprop('isReady', var.get('b')))
     pass
@@ -1303,7 +1303,7 @@ PyJs_anonymous_109_._set_name('anonymous')
 @Js
 def PyJs_anonymous_110_(a, b, c, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'h', 'k', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['k', 'a', 'h', 'd', 'f', 'c', 'e', 'g', 'b'])
     var.put('c', (var.get('c') or Js('user')))
     var.put('f', var.get('Date').create().callprop('valueOf'))
     var.put('g', var.get(u"this").get('H').get(var.get('c')))
@@ -1429,7 +1429,7 @@ PyJs_anonymous_120_._set_name('anonymous')
 @Js
 def PyJs_anonymous_121_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'f', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'f', 'c', 'e', 'b'])
     var.put('e', var.get(u"this").get('K').get(var.get('a')))
     var.put('f', Js([]))
     for PyJsTemp in var.get('e'):
@@ -1457,16 +1457,16 @@ def PyJs_anonymous_123_(a, this, arguments, var=var):
     try:
         PyJsComma(var.put('b', (((var.get('a').get('x') or var.get('a').get('clientX')) or var.get('a').get('offsetX')) or Js(0.0))),var.put('c', (((var.get('a').get('y') or var.get('a').get('clientY')) or var.get('a').get('offsetY')) or Js(0.0))))
     except PyJsException as PyJsTempException:
-        PyJsHolder_64_89147456 = var.own.get('d')
+        PyJsHolder_64_11512846 = var.own.get('d')
         var.force_own_put('d', PyExceptionToJs(PyJsTempException))
         try:
             var.put('c', var.put('b', Js(0.0)))
         finally:
-            if PyJsHolder_64_89147456 is not None:
-                var.own['d'] = PyJsHolder_64_89147456
+            if PyJsHolder_64_11512846 is not None:
+                var.own['d'] = PyJsHolder_64_11512846
             else:
                 del var.own['d']
-            del PyJsHolder_64_89147456
+            del PyJsHolder_64_11512846
     (((Js(0.0)!=var.get('b')) and (Js(0.0)!=var.get('c'))) and var.get(u"this").callprop('addEntropy', Js([var.get('b'), var.get('c')]), Js(2.0), Js('mouse')))
     var.get('C')(var.get(u"this"), Js(0.0))
 PyJs_anonymous_123_._set_name('anonymous')
@@ -1512,16 +1512,16 @@ try:
             try:
                 var.put('H', var.get('require')(Js('crypto')))
             except PyJsException as PyJsTempException:
-                PyJsHolder_61_33373117 = var.own.get('a')
+                PyJsHolder_61_28737190 = var.own.get('a')
                 var.force_own_put('a', PyExceptionToJs(PyJsTempException))
                 try:
                     var.put('H', var.get(u"null"))
                 finally:
-                    if PyJsHolder_61_33373117 is not None:
-                        var.own['a'] = PyJsHolder_61_33373117
+                    if PyJsHolder_61_28737190 is not None:
+                        var.own['a'] = PyJsHolder_61_28737190
                     else:
                         del var.own['a']
-                    del PyJsHolder_61_33373117
+                    del PyJsHolder_61_28737190
             var.put('G', var.put('E', var.get('H')))
         if (var.get('G') and var.get('E').get('randomBytes')):
             PyJsComma(PyJsComma(var.put('D', var.get('E').callprop('randomBytes', Js(128.0))),var.put('D', var.get('Uint32Array').create(var.get('Uint8Array').create(var.get('D')).get('buffer')))),var.get('sjcl').get('random').callprop('addEntropy', var.get('D'), Js(1024.0), Js("crypto['randomBytes']")))
@@ -1537,23 +1537,23 @@ try:
                         raise JS_BREAK_LABEL_61("Breaked")
                 var.get('sjcl').get('random').callprop('addEntropy', var.get('F'), Js(1024.0), Js("crypto['getRandomValues']"))
     except PyJsException as PyJsTempException:
-        PyJsHolder_61_52828592 = var.own.get('a')
+        PyJsHolder_61_54387232 = var.own.get('a')
         var.force_own_put('a', PyExceptionToJs(PyJsTempException))
         try:
             ((PyJsStrictNeq(Js('undefined'),var.get('window',throw=False).typeof()) and var.get('window').get('console')) and PyJsComma(var.get('console').callprop('log', Js('There was an error collecting entropy from the browser:')),var.get('console').callprop('log', var.get('a'))))
         finally:
-            if PyJsHolder_61_52828592 is not None:
-                var.own['a'] = PyJsHolder_61_52828592
+            if PyJsHolder_61_54387232 is not None:
+                var.own['a'] = PyJsHolder_61_54387232
             else:
                 del var.own['a']
-            del PyJsHolder_61_52828592
+            del PyJsHolder_61_54387232
 except JS_BREAK_LABEL_61:
     pass
 PyJs_Object_130_ = Js({'v':Js(1.0),'iter':Js(10000.0),'ks':Js(128.0),'ts':Js(64.0),'mode':Js('ccm'),'adata':Js(''),'cipher':Js('aes')})
 @Js
 def PyJs_anonymous_131_(a, b, c, d, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'f', 'c', 'e', 'g', 'b'])
     PyJs_Object_132_ = Js({})
     var.put('c', (var.get('c') or PyJs_Object_132_))
     PyJs_Object_133_ = Js({})
@@ -1586,7 +1586,7 @@ PyJs_anonymous_131_._set_name('anonymous')
 @Js
 def PyJs_anonymous_138_(a, b, c, d, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'f', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'f', 'c', 'e', 'b'])
     var.put('e', var.get('sjcl').get('json'))
     var.put('f', var.get('e').get('ja').callprop('apply', var.get('e'), var.get('arguments')))
     return var.get('e').callprop('encode', var.get('f'))
@@ -1594,7 +1594,7 @@ PyJs_anonymous_138_._set_name('anonymous')
 @Js
 def PyJs_anonymous_139_(a, b, c, d, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'f', 'g', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'f', 'c', 'e', 'g', 'b'])
     PyJs_Object_140_ = Js({})
     var.put('c', (var.get('c') or PyJs_Object_140_))
     PyJs_Object_141_ = Js({})
@@ -1626,14 +1626,14 @@ PyJs_anonymous_139_._set_name('anonymous')
 @Js
 def PyJs_anonymous_146_(a, b, c, d, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'd':d, 'this':this, 'arguments':arguments}, var)
-    var.registers(['e', 'b', 'c', 'a', 'd'])
+    var.registers(['a', 'd', 'c', 'e', 'b'])
     var.put('e', var.get('sjcl').get('json'))
     return var.get('e').callprop('ia', var.get('a'), var.get('e').callprop('decode', var.get('b')), var.get('c'), var.get('d'))
 PyJs_anonymous_146_._set_name('anonymous')
 @Js
 def PyJs_anonymous_147_(a, this, arguments, var=var):
     var = Scope({'a':a, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     var.put('c', Js('{'))
     var.put('d', Js(''))
     for PyJsTemp in var.get('a'):
@@ -1673,7 +1673,7 @@ PyJs_anonymous_147_._set_name('anonymous')
 @Js
 def PyJs_anonymous_148_(a, this, arguments, var=var):
     var = Scope({'a':a, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     var.put('a', var.get('a').callprop('replace', JsRegExp('/\\s/g'), Js('')))
     if var.get('a').callprop('match', JsRegExp('/^\\{.*\\}$/')).neg():
         PyJsTempException = JsToPyException(var.get('sjcl').get('exception').get('invalid').create(Js("json decode: this isn't json!")))
@@ -1698,7 +1698,7 @@ PyJs_anonymous_148_._set_name('anonymous')
 @Js
 def PyJs_anonymous_151_(a, b, c, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'c':c, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     PyJs_Object_152_ = Js({})
     (PyJsStrictEq(PyJsComma(Js(0.0), Js(None)),var.get('a')) and var.put('a', PyJs_Object_152_))
     if PyJsStrictEq(PyJsComma(Js(0.0), Js(None)),var.get('b')):
@@ -1715,7 +1715,7 @@ PyJs_anonymous_151_._set_name('anonymous')
 @Js
 def PyJs_anonymous_153_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     PyJs_Object_154_ = Js({})
     var.put('c', PyJs_Object_154_)
     for PyJsTemp in var.get('a'):
@@ -1726,7 +1726,7 @@ PyJs_anonymous_153_._set_name('anonymous')
 @Js
 def PyJs_anonymous_155_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     PyJs_Object_156_ = Js({})
     var.put('c', PyJs_Object_156_)
     #for JS loop
@@ -1747,7 +1747,7 @@ var.get('sjcl').get('misc').put('pa', PyJs_Object_157_)
 @Js
 def PyJs_anonymous_158_(a, b, this, arguments, var=var):
     var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-    var.registers(['c', 'a', 'b', 'd'])
+    var.registers(['c', 'a', 'd', 'b'])
     var.put('c', var.get('sjcl').get('misc').get('pa'))
     PyJs_Object_159_ = Js({})
     var.put('b', (var.get('b') or PyJs_Object_159_))
