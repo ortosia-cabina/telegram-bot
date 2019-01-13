@@ -7,4 +7,4 @@ def main(dispatcher):
     
 def help(bot, update):
     bot.send_message(chat_id=update.message.chat_id,
-                    text="""Puedes usar los siguientes comandos: \n- /help ayuda y explicación de los comandos a usar \n- /login para iniciar sesión\n- /poll para crear una nueva votación\n - /vote para votar en votaciones abiertas""")
+                    text="""Puedes usar los siguientes comandos: \n- /help ayuda y explicación de los comandos a usar \n- /login para iniciar sesión\n- /poll para crear una nueva votación\n- /vote para votar en votaciones abiertas""")
