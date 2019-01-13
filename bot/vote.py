@@ -42,7 +42,7 @@ def vote(bot,update):
           print(all_votings)
           for voting in all_votings:
                print(voting)
-               if voting["start_date"] is not None and voting["end_date"] is None: # Select open polls
+               if voting["start_date"] is not None and voting["end_date"] is None and if voting not in USER_VOTINGS: # Select open polls
                     USER_VOTINGS.append(voting)
 
           if len(USER_VOTINGS) > 0:
