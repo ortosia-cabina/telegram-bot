@@ -25,6 +25,10 @@ def vote(bot,update):
      global USER_VOTINGS
      global USER_VOTE
      global USER_TOKEN
+
+     USER_VOTINGS = []
+     SELECTED_VOTING = {}
+     USER_TOKEN = ""
      try:
           token = get_token(update.message.chat_id)
           data["token"] = token
@@ -158,7 +162,15 @@ def get_token(chat_id):
      return token
 
 def cancel(bot, update):
-     update.message.reply_text('La creación de la votación se ha cancelado :(')
+     global USER_VOTINGS
+     global USER_VOTE
+     global USER_TOKEN
+
+     USER_VOTINGS = []
+     SELECTED_VOTING = {}
+     USER_TOKEN = ""
+
+     update.message.reply_text('La votación se ha cancelado 🌾')
 
      return ConversationHandler.END
 
