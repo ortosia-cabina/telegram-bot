@@ -1,0 +1,11 @@
+language: python 
+python: 
+- "3.6"
+install: 
+- pipenv install
+script: 
+- cd tests
+- python -m unittest
+branches:
+  only:
+  - master
