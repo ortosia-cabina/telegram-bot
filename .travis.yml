@@ -7,6 +7,7 @@ install:
 script:
 - cd tests
 - python -m unittest
+- cd ..
 deploy:
   provider: heroku
   api_key:
