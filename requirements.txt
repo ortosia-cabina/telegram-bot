@@ -1,0 +1,7 @@
+python-telegram-bot
+psycopg2
+inflection 
+requests 
+datetime 
+RandomWords 
+js2py 
