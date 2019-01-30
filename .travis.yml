@@ -5,6 +5,7 @@ install:
 - pip install pipenv
 - pipenv install
 script:
+- sonar-scanner
 - cd tests
 - python -m unittest
 - cd ..
@@ -16,4 +17,7 @@ deploy:
   on:
     all_branches: true
   skip_cleanup: true
+addons:
+  sonarcloud:
+    organization: "ortosia-cabina" 
 
