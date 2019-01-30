@@ -25,7 +25,7 @@ class TestStringMethods(unittest.TestCase):
 
         self.assertEqual(r.status_code, 500)
 
-    def test_create_poll_invalid_token(self):
+    def test_create_simple_poll_invalid_token(self):
 
         headers = {"Authorization": "Token 62edb238c3bae1a656690693f4"}
         voting = {"name": "Simple poll", "desc": "Question for testing", "question": "testing?", "question_opt": ["test"]}
@@ -68,6 +68,42 @@ class TestStringMethods(unittest.TestCase):
         r = requests.post(bot_config.API_ENDPOINT + "voting/", json=voting, headers=headers)
 
         self.assertEqual(r.status_code, 201)
+
+    def test_create_multiple_poll_invalid_token(self):
+
+        headers = {"Authorization": "Token 62f9e4c8c3bae1a656690693f4"}
+        voting = {
+                "multiple": "true",
+                "name": "Multiple poll",
+                "desc": "DescripcionVotacion",
+                "questions": [
+                {
+                    "desc": "DesripcionPreguta1",
+                    "options": [
+                    {
+                        "option": "opcion12"
+                    },
+                    {
+                        "option": "opcion12"
+                    }
+                    ]
+                },
+                {
+                    "desc": "DesripcionPreguta1",
+                    "options": [
+                    {
+                        "option": "opcion21"
+                    },
+                    {
+                        "option": "opcion22"
+                    }
+                    ]
+                }
+                ]
+                }  
+        r = requests.post(bot_config.API_ENDPOINT + "voting/", json=voting, headers=headers)
+
+        self.assertEqual(r.status_code, 401)
 
     def test_vote(self):
 
