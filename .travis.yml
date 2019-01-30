@@ -7,6 +7,7 @@ install:
 script:
 - cd tests
 - python -m unittest
+- cd ..
 deploy:
   provider: heroku
   api_key:
@@ -15,6 +16,4 @@ deploy:
   on:
     all_branches: true
   skip_cleanup: true
-# branches:
-#   only:
-#   - master
+
